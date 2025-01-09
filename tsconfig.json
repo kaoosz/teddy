@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "target": "ES2022",
+        "emitDecoratorMetadata": true,
+        "sourceMap": true,
+        "strict": true,
+        "outDir": "./dist",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true,
+        "types": ["node","express"]
+    },
+
+    "include": ["src/**/*"],
+    "exclude": ["node_modules","dist"]
+}
