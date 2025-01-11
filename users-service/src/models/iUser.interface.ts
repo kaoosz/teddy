@@ -8,3 +8,8 @@ export interface IUser {
     created_at: Date;
 }
 
+export interface User {
+    id: number;
+    email: string;
+    password: string;
+}

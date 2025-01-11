@@ -13,7 +13,14 @@ export class UserRepository implements IUserRepository {
     
 
     async create(data: CreateUserDto): Promise<IUser> {
-        // return await this.pp.user.create({data});
         return await this.prisma.user.create({data});
+    }
+
+    async findOneByEmail(email: string): Promise<IUser | null> {
+        return await this.prisma.user.findFirst({
+            where:{
+                email: email
+            }
+        });
     }
 }
