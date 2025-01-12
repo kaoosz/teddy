@@ -11,7 +11,7 @@ export const configureJwtStrategy = (
     new JwtStrategy(
       {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-        secretOrKey: process.env.JWT_SECRET || 'secret',
+        secretOrKey: process.env.JWT_SECRET || 'dGhpc2lzYXNlY3JldGtleWZvcmp3dHRva2Vu',
       },
       
       async (payload: JwtPayloadDto, done) => {

@@ -5,9 +5,14 @@ export class PrismaDatabase {
     private static instance: PrismaDatabase;
     private prisma: PrismaClient;
 
-    private constructor(){
+    private constructor(databaseUrl?: string){
         this.prisma = new PrismaClient({
-            log: ['error']
+            log: ['error'],
+            datasources: {
+                db: {
+                    url: databaseUrl || process.env.DATABASE_URL
+                }
+            }
         })
     }
 
@@ -24,9 +29,5 @@ export class PrismaDatabase {
 }
 
 export const createPrismaClient = () => {
-    return new PrismaClient({
-
-    })
+    return PrismaDatabase.getInstance().getClient();
 }
-
-export type DatabaseClient = PrismaClient;

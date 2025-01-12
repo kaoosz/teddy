@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import { IUser } from "../models/iUser.interface";
 import { UserRepository } from "../respository/user.repository";
 import { JwtPayloadDto, LoginDto } from "../dto/auth.dto";
+import { AppError } from "../utils/error";
+import { STATUS } from "../utils/statusCode";
 
 
 export class AuthService {
@@ -21,8 +23,8 @@ export class AuthService {
     async login(loginDto: LoginDto): Promise<{ accessToken: string }> {
         const user = await this.validateUser(loginDto.email, loginDto.password);
         if (!user) {
-        //   throw new AppError('Invalid credentials', STATUS.UNAUTHORIZED);
-          throw new Error('Invalid credentials !user');
+          throw new AppError('Invalid credentials', STATUS.UNAUTHORIZED);
+          
         }
     
         const isPasswordValid = await bcrypt.compare(
@@ -31,8 +33,7 @@ export class AuthService {
         );
     
         if (!isPasswordValid) {
-          throw new Error('Invalid credentials !isPasswordValid');
-        //   throw new AppError('Invalid credentials', STATUS.UNAUTHORIZED);
+          throw new AppError('Invalid credentials', STATUS.UNAUTHORIZED);
         }
     
         const payload: JwtPayloadDto = {
@@ -40,7 +41,7 @@ export class AuthService {
           email: user.email,
         };
 
-        const accessToken = jwt.sign(payload, process.env.JWT_SECRET || 'secret', {
+        const accessToken = jwt.sign(payload, process.env.JWT_SECRET || "dGhpc2lzYXNlY3JldGtleWZvcmp3dHRva2Vu", {
           expiresIn: '1h',
         });
     

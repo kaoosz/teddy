@@ -2,8 +2,8 @@
   "name": "users-service",
   "version": "1.0.0",
   "scripts": {
-    "start": "npx prisma generate && ts-node src/server.ts",
-    "dev": "npx prisma generate && nodemon src/server.ts"
+    "start": "ts-node src/server.ts",
+    "dev": "nodemon src/server.ts"
   },
   "keywords": [],
   "author": "",

@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { AuthService } from "../service/auth.service";
 import { LoginDto } from "../dto/auth.dto";
+import { AppError } from "../utils/error";
+import { STATUS } from "../utils/statusCode";
 
 
 export class AuthController {
@@ -11,14 +13,19 @@ export class AuthController {
         
         try {
             const loginDto: LoginDto = req.body;
-            console.log("loginDto",loginDto);
             const token = await this.authService.login(loginDto);
 
             res.status(200).json(token);
         } catch (error) {
-            console.error("error",error);
-            // TODO loger
-            // res.status(402).json({error: error})
+            if(error instanceof AppError){
+                const status = error.statusCode || STATUS.INTERNAL_SERVER_ERROR;
+                const message = error.message || STATUS.DEFAULT_ERROR;
+                res.status(status).json({ error: message });
+            } else{
+                res.status(STATUS.INTERNAL_SERVER_ERROR).json({ 
+                    error: STATUS.DEFAULT_ERROR 
+                });
+            }
         }
     }
 }

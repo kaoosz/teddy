@@ -2,24 +2,29 @@ import { PrismaClient } from "@prisma/client";
 import { CreateUserDto } from "../dto/user.dto";
 import { IUserRepository } from "../interfaces/iUser.repository";
 import { IUser } from "../models/iUser.interface";
-import { DatabaseClient, PrismaDatabase } from "../service/prisma.service";
-
 
 
 export class UserRepository implements IUserRepository {
-    // private pp = PrismaDatabase.getInstance().getClient();
-    // constructor(private prisma: PrismaClient) {}
-    constructor(private readonly prisma: DatabaseClient) {}
-    
+
+    constructor(private prisma: PrismaClient) {}
 
     async create(data: CreateUserDto): Promise<IUser> {
         return await this.prisma.user.create({data});
+
     }
 
     async findOneByEmail(email: string): Promise<IUser | null> {
         return await this.prisma.user.findFirst({
             where:{
                 email: email
+            }
+        });
+    }
+
+    async findOneById(id: number): Promise<IUser | null> {
+        return await this.prisma.user.findFirst({
+            where:{
+                id: id
             }
         });
     }

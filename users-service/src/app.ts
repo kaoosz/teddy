@@ -2,20 +2,17 @@ import express from "express";
 import userRoutes from "./routes/user.routes";
 import { configureLocalStrategy } from "./service/local.strategy";
 import passport from "passport";
-import { UserRepository } from "./respository/user.repository";
-import { createPrismaClient } from "./service/prisma.service";
 import { configureJwtStrategy } from "./service/jwt.strategy";
+import { Registry } from "./config/register";
 
 export const app = express();
+const registry = Registry.getInstance();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(passport.initialize());
 
-const db = createPrismaClient();
-const userRepository = new UserRepository(db);
-
-configureLocalStrategy(passport,userRepository);
-configureJwtStrategy(passport, userRepository);
+configureLocalStrategy(passport,registry.getUserRepository());
+configureJwtStrategy(passport, registry.getUserRepository());
 
 app.use(userRoutes);
