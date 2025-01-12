@@ -1,0 +1,29 @@
+# docker-compose.dev.yml
+version: '3'
+
+services:
+  users-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: users_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+    volumes:
+      - users_data:/var/lib/postgresql/data
+
+  url-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: url_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - url_data:/var/lib/postgresql/data
+
+volumes:
+  users_data:
+  url_data:

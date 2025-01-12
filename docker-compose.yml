@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+  krakend:
+    image: devopsfaith/krakend:latest
+    volumes:
+      - ./api-gateway/krakend.json:/etc/krakend/krakend.json
+    ports:
+      - "8080:8080"
+    depends_on:
+      - users-service
+      - url-service
+    environment:
+      - FC_ENABLE=1
+      - FC_SETTINGS="/etc/krakend/krakend.json"
+      - FC_OUT=/etc/krakend/krakend.json
+
+  users-service:
+    build: 
+      context: ./users-service
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@users-db:5432/users_db
+      - JWT_SECRET=your_jwt_secret
+    depends_on:
+      - users-db
+
+  users-db:
+    image: postgres:latest
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=users_db
+    volumes:
+      - users_data:/var/lib/postgresql/data
+
+  url-service:
+    build:
+      context: ./url-service
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@url-db:5432/url_db
+      - AUTH_SERVICE_URL=http://users-service:3001
+    depends_on:
+      - url-db
+      - users-service
+
+  url-db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=url_db
+    volumes:
+      - url_data:/var/lib/postgresql/data
+
+volumes:
+  users_data:
+  url_data:
