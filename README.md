@@ -107,7 +107,6 @@ Exemplo de Resposta:
 ```
 
 ```
-```
 Atualizar Usuário (PUT)
 
 Rota: PUT http://localhost:3000/urls/2
@@ -122,7 +121,6 @@ Exemplo de Request:
   "url": "https://www.youtube.com/"
 }
 ```
-```
 Exemplo de Resposta:
 ```
 {
@@ -135,7 +133,6 @@ Exemplo de Resposta:
   "updated_at": "2025-01-13T05:36:39.222Z",
   "deleted_at": null
 }
-```
 ```
 Deleter Url (DELETE)
 
@@ -150,7 +147,6 @@ Exemplo de Request:
 {
    http://localhost:3000/urls/15
 }
-```
 ```
 Exemplo de Resposta:
 ```
@@ -183,5 +179,3 @@ Exemplo de Request:
 {
   GET http://localhost:3000/xspJ8RP
 }
-```
-
