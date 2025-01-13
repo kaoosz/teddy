@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
 import { UrlService } from "../service/url.service"
+import { STATUS } from "../utils/statusCode";
+import { AppError} from "../utils/error";
+import { logger } from "../service/logger.service";
 
 
 export class UrlController {
@@ -12,24 +15,29 @@ export class UrlController {
             const { url} = req.body;
 
             const result = await this.urlService.create(url,req.user);
-
-            // res.redirect(newurl.originalUrl);
+            logger.info('Url created successfully', { userId: result.id });
             res.status(200).json(result);
+            return;
         } catch (error) {
-            console.log("error",error);
+            logger.error('Failed to create url', { error: error });
+            if(error instanceof AppError){
+                const status = error.statusCode || STATUS.INTERNAL_SERVER_ERROR;
+                const message = error.message || STATUS.DEFAULT_ERROR;
+                res.status(status).json({ error: message });
+                return;
+            }else{
+                res.status(STATUS.INTERNAL_SERVER_ERROR).json({ 
+                    error: STATUS.DEFAULT_ERROR 
+                });
+                return;
+            }
         }
     }
 
     async redirect(req: Request, res: Response): Promise<void> {
         try {
-            // const userId = req.user!.id;
             const { shortCode } = req.params;
             
-            console.log("req.params",req.params);
-            console.log("url.url",shortCode);
-            console.log("url.url",req.ip);
-            console.log("url.url",req.headers['user-agent']);
-
             const url = await this.urlService.handleRedirect(
                 shortCode,
                 req.ip,
@@ -37,17 +45,25 @@ export class UrlController {
             );
 
             if(!url) {
-                //
-                res.status(404).json({msg: 'vou mudar pra thow'});
+                throw new AppError('url not found', STATUS.BAD_REQUEST);
             }
 
-            console.log("url.url",url);
-            res.redirect(url.original_url);
-            
-            
+            logger.info('successfully redirect', { originalUrl: url.original_url, shortUrl: shortCode });
+            res.redirect(url.original_url);     
+            return;     
         } catch (error) {
-            console.error("listMyUrls error",error)
-            res.status(500).json({msg: "deu ruim"});
+            logger.error('Failed to redirect url', { error: error });
+            if(error instanceof AppError){
+                const status = error.statusCode || STATUS.INTERNAL_SERVER_ERROR;
+                const message = error.message || STATUS.DEFAULT_ERROR;
+                res.status(status).json({ error: message });
+                return;
+            }else{
+                res.status(STATUS.INTERNAL_SERVER_ERROR).json({ 
+                    error: STATUS.DEFAULT_ERROR 
+                });
+                return;
+            }
         }
     }
 
@@ -56,10 +72,22 @@ export class UrlController {
             const userId = req.user!.id;
             
             const result = await this.urlService.findMyUrls(userId);
+            logger.info('successfully list myUrls', { Urls: result });
             res.status(200).json(result);
-            
+            return;
         } catch (error) {
-            console.error("listMyUrls error",error)
+            logger.error('Failed to list my urls', { error: error });
+            if(error instanceof AppError){
+                const status = error.statusCode || STATUS.INTERNAL_SERVER_ERROR;
+                const message = error.message || STATUS.DEFAULT_ERROR;
+                res.status(status).json({ error: message });
+                return;
+            }else{
+                res.status(STATUS.INTERNAL_SERVER_ERROR).json({ 
+                    error: STATUS.DEFAULT_ERROR 
+                });
+                return;
+            }
         }
     }
     
@@ -69,12 +97,24 @@ export class UrlController {
             const userId = req.user!.id;
             const { url } = req.body;
 
+
             const result = await this.urlService.updateUrl(urlId,userId,url);
+            logger.info('successfully update my url', { Url: result });
             res.status(200).json(result);
-            
+            return;
         } catch (error) {
-            console.error("listMyUrls error",error)
-            res.status(404).json({error});
+            logger.error('Failed to update my url', { error: error });
+            if(error instanceof AppError){
+                const status = error.statusCode || STATUS.INTERNAL_SERVER_ERROR;
+                const message = error.message || STATUS.DEFAULT_ERROR;
+                res.status(status).json({ error: message });
+                return;
+            }else{
+                res.status(STATUS.INTERNAL_SERVER_ERROR).json({ 
+                    error: STATUS.DEFAULT_ERROR 
+                });
+                return;
+            }
         }
     }
 
@@ -83,11 +123,24 @@ export class UrlController {
             const userId = req.user!.id;
             const urlId = parseInt(req.params.id);
             
-            const result = await this.urlService.deleteUrl(urlId);
+            const result = await this.urlService.deleteUrl(urlId,userId);
+            logger.info('successfully delete my url', { Url: result });
             res.status(200).json(result);
-            
+            return;
+
         } catch (error) {
-            console.error("listMyUrls error",error)
+            logger.error('Failed to delete my urls', { error: error });
+            if(error instanceof AppError){
+                const status = error.statusCode || STATUS.INTERNAL_SERVER_ERROR;
+                const message = error.message || STATUS.DEFAULT_ERROR;
+                res.status(status).json({ error: message });
+                return;
+            }else{
+                res.status(STATUS.INTERNAL_SERVER_ERROR).json({ 
+                    error: STATUS.DEFAULT_ERROR 
+                });
+                return;
+            }
         }
     }
     

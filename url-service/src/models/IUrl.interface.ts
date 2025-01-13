@@ -1,5 +1,3 @@
-
-
 export interface IUrl {
     id: number;
     original_url: string;

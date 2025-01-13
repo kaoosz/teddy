@@ -1,5 +1,5 @@
 import { Request,Response,NextFunction } from "express";
-import { STATUS } from "../../../users-service/src/utils/statusCode";
+import { STATUS } from "../utils/statusCode";
 
 export const authenticateOptional = (required: boolean = false) => {
     return async (req: Request, res: Response, next: NextFunction) => {
@@ -7,7 +7,7 @@ export const authenticateOptional = (required: boolean = false) => {
 
         if (!authHeader || !authHeader.startsWith("Bearer ")) {
             if (required) {
-                res.status(STATUS.UNAUTHORIZED).json({ message: "Authentication required" });
+                res.status(STATUS.UNAUTHORIZED).json({ message: "Authentication requireds" });
             }
             req.user = null;
             next();
@@ -25,9 +25,9 @@ export const authenticateOptional = (required: boolean = false) => {
             });
             
             const data = await validation.json();
-            
+        
             if (!data.valid) {
-                res.status(STATUS.UNAUTHORIZED).json({ message: "Invalid token" });
+                res.status(STATUS.UNAUTHORIZED).json({ message: "Invalid tokens" });
                 return;
             }
 
@@ -35,7 +35,7 @@ export const authenticateOptional = (required: boolean = false) => {
             next();
         } catch (error) {
             if (required) {
-                res.status(STATUS.UNAUTHORIZED).json({ message: "Authentication failed" });
+                res.status(STATUS.UNAUTHORIZED).json({ message: "Authentication faileds" });
                 return;
             }
             req.user = null;

@@ -1,7 +1,6 @@
 import { CreateUrlDto } from "../dto/url.dto";
 import { DatabaseClient } from "../service/prisma.service";
 import { IUrlRepository } from "../interfaces/IUrl.repository";
-import { IUrl } from "../models/IUrl.interface";
 
 export class UrlRepository implements IUrlRepository {
     constructor(private readonly prisma: DatabaseClient) {}
@@ -55,7 +54,8 @@ export class UrlRepository implements IUrlRepository {
     async softDelete(id: number): Promise<any>{
         return await this.prisma.url.update({
             where: {id},
-            data: {
+            data: {                
+                updated_at: new Date(),
                 deleted_at: new Date()
             }
         });

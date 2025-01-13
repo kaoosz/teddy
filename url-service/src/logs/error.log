@@ -1,0 +1,19 @@
+{"error":{"statusCode":400},"level":"error","message":"Failed to redirect url","timestamp":"2025-01-12T19:10:44.656Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to update my url","timestamp":"2025-01-12T19:26:58.463Z"}
+{"error":{"statusCode":401},"level":"error","message":"Failed to update my url","timestamp":"2025-01-12T19:27:07.813Z"}
+{"error":{"statusCode":401},"level":"error","message":"Failed to update my url","timestamp":"2025-01-12T19:27:38.221Z"}
+{"error":{"statusCode":401},"level":"error","message":"Failed to update my url","timestamp":"2025-01-12T19:27:47.018Z"}
+{"error":{"statusCode":401},"level":"error","message":"Failed to update my url","timestamp":"2025-01-12T19:27:52.848Z"}
+{"error":{"statusCode":401},"level":"error","message":"Failed to update my url","timestamp":"2025-01-12T19:28:55.738Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to redirect url","timestamp":"2025-01-12T22:42:05.689Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to delete my urls","timestamp":"2025-01-13T00:31:44.070Z"}
+{"error":{"statusCode":401},"level":"error","message":"Failed to delete my urls","timestamp":"2025-01-13T00:31:48.365Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to redirect url","timestamp":"2025-01-13T01:03:17.728Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to redirect url","timestamp":"2025-01-13T01:28:35.011Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to redirect url","timestamp":"2025-01-13T01:34:51.800Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to redirect url","timestamp":"2025-01-13T01:40:49.644Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to redirect url","timestamp":"2025-01-13T01:41:07.408Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to redirect url","timestamp":"2025-01-13T01:44:10.944Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to redirect url","timestamp":"2025-01-13T01:52:11.276Z"}
+{"error":{},"level":"error","message":"Failed to list my urls","timestamp":"2025-01-13T02:03:53.808Z"}
+{"error":{},"level":"error","message":"Failed to list my urls","timestamp":"2025-01-13T02:06:31.829Z"}
