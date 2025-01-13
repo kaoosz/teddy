@@ -1,6 +1,7 @@
 import { Request,Response,NextFunction } from "express";
 import { STATUS } from "../utils/statusCode";
 
+
 export const authenticateOptional = (required: boolean = false) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         const authHeader = req.headers.authorization;
