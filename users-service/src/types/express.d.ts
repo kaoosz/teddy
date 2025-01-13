@@ -1,9 +1,17 @@
-declare namespace Express {
+// src/types/express.d.ts
+
+import 'express';
+
+declare global {
+  namespace Express {
     interface Request {
-        user?:{
-            id: number;
-            email: string;
-            [key: string]: any;
-        } | null;
+      user?: {
+        id: number;
+        name: string;
+        email: string;
+        created_at: string;
+        updated_at: string;
+      } | null;
     }
+  }
 }
