@@ -19,7 +19,6 @@ export const authenticateOptional = (required: boolean = false) => {
 
         try {
 
-            console.log("process.env.AUTH_SERVICE_URL",process.env.AUTH_SERVICE_URL);
 
             //erro estranho quando tenta puxar do env do docker AUTH_SERVICE_URL=http://users-service:3001
             const validation = await fetch(`http://users-service:3001/users/validate-token`, {

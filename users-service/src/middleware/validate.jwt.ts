@@ -26,9 +26,7 @@ export function ValidateJwt(userRepository: IUserRepository) {
                     process.env.JWT_SECRET || 'dGhpc2lzYXNlY3JldGtleWZvcmp3dHRva2Vu'
                 ) as { id: number, email: string };
 
-                console.log("decoded",decoded);
             } catch (jwtError) {
-                console.log("jwtError",jwtError);
                 res.status(401).json({
                     valid: false,
                     message: "Invalid token"
@@ -53,7 +51,6 @@ export function ValidateJwt(userRepository: IUserRepository) {
             next();
             
         } catch (error) {
-            console.log("error: ", error);
             res.status(401).json({
                 valid: false,
                 message: error
