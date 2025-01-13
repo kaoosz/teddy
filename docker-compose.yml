@@ -1,20 +1,6 @@
 version: '3'
 
 services:
-  krakend:
-    image: devopsfaith/krakend:latest
-    volumes:
-      - ./api-gateway/krakend.json:/etc/krakend/krakend.json
-    ports:
-      - "8080:8080"
-    depends_on:
-      - users-service
-      - url-service
-    environment:
-      - FC_ENABLE=1
-      - FC_SETTINGS="/etc/krakend/krakend.json"
-      - FC_OUT=/etc/krakend/krakend.json
-
   users-service:
     build: 
       context: ./users-service
@@ -61,6 +47,16 @@ services:
       - POSTGRES_DB=url_db
     volumes:
       - url_data:/var/lib/postgresql/data
+
+  swagger:
+    build:
+      context: ./docs
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    depends_on:
+      - users-service
+      - url-service
 
 volumes:
   users_data:

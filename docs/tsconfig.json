@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "ES2022",                      // Define o nível de JavaScript para saída
+      "module": "CommonJS",                 // Módulos do Node.js
+      "outDir": "./dist",                   // Diretório para saída dos arquivos compilados
+      "rootDir": "./",                      // Diretório base dos arquivos TypeScript
+      "strict": true,                       // Ativa verificações estritas
+      "esModuleInterop": true,              // Suporte para importação de módulos ES6
+      "skipLibCheck": true,                 // Ignora checagem de declarações de tipos de bibliotecas
+      "forceConsistentCasingInFileNames": true // Garante consistência de nomes de arquivos
+    },
+    "include": ["**/*.ts"],                 // Arquivos TypeScript incluídos
+    "exclude": ["node_modules", "dist"]     // Diretórios excluídos
+  }
+  
