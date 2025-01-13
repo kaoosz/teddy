@@ -21,3 +21,14 @@
 {"error":{"statusCode":400},"level":"error","message":"Failed to delete my urls","timestamp":"2025-01-13T05:40:57.335Z"}
 {"error":{"statusCode":400},"level":"error","message":"Failed to delete my urls","timestamp":"2025-01-13T05:41:01.196Z"}
 {"error":{"statusCode":401},"level":"error","message":"Failed to delete my urls","timestamp":"2025-01-13T05:41:18.472Z"}
+{"error":{},"level":"error","message":"Failed to create url","timestamp":"2025-01-13T09:13:08.637Z"}
+{"error":{},"level":"error","message":"Failed to create url","timestamp":"2025-01-13T09:15:06.721Z"}
+{"error":{},"level":"error","message":"Failed to create url","timestamp":"2025-01-13T09:15:31.862Z"}
+{"error":{},"level":"error","message":"Failed to create url","timestamp":"2025-01-13T09:16:21.453Z"}
+{"error":{},"level":"error","message":"Failed to create url","timestamp":"2025-01-13T09:16:46.054Z"}
+{"error":{},"level":"error","message":"Failed to create url","timestamp":"2025-01-13T09:18:32.610Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to delete my urls","timestamp":"2025-01-13T09:25:27.403Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to delete my urls","timestamp":"2025-01-13T09:26:36.590Z"}
+{"error":{"statusCode":401},"level":"error","message":"Failed to delete my urls","timestamp":"2025-01-13T09:26:48.764Z"}
+{"error":{"statusCode":401},"level":"error","message":"Failed to update my url","timestamp":"2025-01-13T09:32:39.967Z"}
+{"error":{"statusCode":401},"level":"error","message":"Failed to delete my urls","timestamp":"2025-01-13T09:33:31.067Z"}

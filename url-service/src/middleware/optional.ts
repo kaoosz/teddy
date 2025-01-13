@@ -1,6 +1,7 @@
 import { Request,Response,NextFunction } from "express";
 import { STATUS } from "../utils/statusCode";
 
+
 export const authenticateOptional = (required: boolean = false) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         const authHeader = req.headers.authorization;
@@ -19,6 +20,7 @@ export const authenticateOptional = (required: boolean = false) => {
         try {
 
             const validation = await fetch(`${process.env.AUTH_SERVICE_URL}/users/validate-token`, {
+            // const validation = await fetch(`http://localhost:3001/users/validate-token`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

@@ -14,7 +14,7 @@
         "esModuleInterop": true,
         "types": ["node","express"],
         "typeRoots": [
-            "./src/types"
+            "./src/types/"
         ]
     },
 

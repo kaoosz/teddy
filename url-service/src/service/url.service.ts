@@ -10,26 +10,30 @@ import { Url } from "./urlShort.service";
 export class UrlService {
     constructor(private urlRepository: IUrlRepository){}
 
-    async create(url: string,user?: any): Promise<any> {//vou precisar mudar
+    async create(originalUrl:string,userId?:number): Promise<IUrl> {
 
-        let urlValid = new Url(url);
+
+        let urlValid = new Url(originalUrl);
+        const finalShortUrl = urlValid.shortUrl || 'abcdr';
         const check_Url_Exists_Db = await this.urlRepository.findUrl(urlValid.shortUrl);
 
         if(check_Url_Exists_Db){
             throw new AppError("Conflict generate Url try again",STATUS.CONFLICT);
         }
 
-        const newUrlDb = await this.urlRepository.create({
-         original_url: urlValid.originalUrl,
-         short_url: urlValid.shortUrl,
-         user_id: user?.id || null
-        });
+        const saveOnDb: CreateUrlDto = {
+            original_url: urlValid.originalUrl,
+            short_url: finalShortUrl,
+            user_id: userId ?? null
 
+        }
+
+        const newUrlDb = await this.urlRepository.createUrl(saveOnDb);
         return newUrlDb;
 
     }
 
-    async findMyUrls(id: number): Promise<any>{
+    async findMyUrls(id: number): Promise<IUrl[] | null>{
         return await this.urlRepository.findAllByUserId(id);
     }
 
@@ -55,7 +59,7 @@ export class UrlService {
         return await this.urlRepository.update(urlId,{ original_url: newOriginalUrl });
     }
 
-    async deleteUrl(urlId: number,userId: number): Promise<any>{
+    async deleteUrl(urlId: number,userId: number): Promise<IUrl>{
 
         const urlExists = await this.urlRepository.findUrlById(urlId);
 

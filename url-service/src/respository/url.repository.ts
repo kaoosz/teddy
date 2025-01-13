@@ -1,16 +1,17 @@
 import { CreateUrlDto } from "../dto/url.dto";
 import { DatabaseClient } from "../service/prisma.service";
 import { IUrlRepository } from "../interfaces/IUrl.repository";
+import { IUrl } from "../models/IUrl.interface";
 
 export class UrlRepository implements IUrlRepository {
     constructor(private readonly prisma: DatabaseClient) {}
     
 
-    async create(data: CreateUrlDto): Promise<any> {
-        return await this.prisma.url.create({data});
+    async createUrl(data: CreateUrlDto): Promise<IUrl> {
+        return await this.prisma.url.create({ data });
     }
     
-    async findUrl(url: string): Promise<any | null> {
+    async findUrl(url: string): Promise<IUrl | null> {
         return await this.prisma.url.findFirst({
             where: {
                 short_url: url
@@ -18,7 +19,7 @@ export class UrlRepository implements IUrlRepository {
         })
     }
 
-    async findUrlById(id: number): Promise<any | null> {
+    async findUrlById(id: number): Promise<IUrl | null> {
         return await this.prisma.url.findUnique({
             where: {
                 id: id,
@@ -51,7 +52,7 @@ export class UrlRepository implements IUrlRepository {
         });
     }
 
-    async softDelete(id: number): Promise<any>{
+    async softDelete(id: number): Promise<IUrl>{
         return await this.prisma.url.update({
             where: {id},
             data: {                
@@ -61,7 +62,7 @@ export class UrlRepository implements IUrlRepository {
         });
     }
 
-    async incrementClickCount(urlId: number) {
+    async incrementClickCount(urlId: number): Promise<IUrl> {
         return this.prisma.url.update({
             where: {id: urlId },
             data: {
@@ -72,7 +73,7 @@ export class UrlRepository implements IUrlRepository {
         });
     }
 
-    async createClickLog(data: { url_id: number, ip?: string, user_agent?: string}){
+    async createClickLog(data: { url_id: number, ip?: string, user_agent?: string}): Promise<any>{
         return this.prisma.clickLog.create({
             data
         });

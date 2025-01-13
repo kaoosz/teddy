@@ -14,7 +14,8 @@ export class UrlController {
 
             const { url} = req.body;
 
-            const result = await this.urlService.create(url,req.user);
+            //  async create(originalUrl:string,userId:number): Promise<IUrl> {
+            const result = await this.urlService.create(url,req.user?.id);
             logger.info('Url created successfully', { userId: result.id });
             res.status(200).json(result);
             return;
@@ -26,6 +27,7 @@ export class UrlController {
                 res.status(status).json({ error: message });
                 return;
             }else{
+
                 res.status(STATUS.INTERNAL_SERVER_ERROR).json({ 
                     error: STATUS.DEFAULT_ERROR 
                 });
