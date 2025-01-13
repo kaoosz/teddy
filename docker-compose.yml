@@ -50,8 +50,8 @@ services:
 
   swagger:
     build:
-      context: ./docs
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./docs/Dockerfile
     ports:
       - "4000:4000"
     depends_on:

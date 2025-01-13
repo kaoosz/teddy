@@ -34,7 +34,11 @@ const swaggerOptions = {
     ],
   },
 
-  apis: ['../users-service/src/swagger-docs/*.ts',"../url-service/src/swagger-docs/*ts"], 
+  // apis: ['../users-service/src/swagger-docs/*.ts',"../url-service/src/swagger-docs/*ts"],
+  apis: [
+    './users-service-swagger-docs/*.ts',
+    './url-service-swagger-docs/*.ts'
+  ]
 };
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);

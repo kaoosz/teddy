@@ -2,14 +2,16 @@ FROM node:22.13.0
 
 WORKDIR /app
 
-COPY package*.json ./
-COPY tsconfig.json ./
+COPY docs/package*.json .
+COPY docs/tsconfig.json .
 
 RUN npm install
 
-COPY . .
+COPY docs/. .
+
+COPY users-service/src/swagger-docs users-service-swagger-docs
+COPY url-service/src/swagger-docs url-service-swagger-docs
 
 EXPOSE 4000
 
-# Comando para rodar o servidor
-CMD ["npx", "ts-node", "server.ts"]
+CMD ["npm", "start"]

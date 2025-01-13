@@ -17,3 +17,7 @@
 {"error":{"statusCode":400},"level":"error","message":"Failed to redirect url","timestamp":"2025-01-13T01:52:11.276Z"}
 {"error":{},"level":"error","message":"Failed to list my urls","timestamp":"2025-01-13T02:03:53.808Z"}
 {"error":{},"level":"error","message":"Failed to list my urls","timestamp":"2025-01-13T02:06:31.829Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to delete my urls","timestamp":"2025-01-13T05:40:52.422Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to delete my urls","timestamp":"2025-01-13T05:40:57.335Z"}
+{"error":{"statusCode":400},"level":"error","message":"Failed to delete my urls","timestamp":"2025-01-13T05:41:01.196Z"}
+{"error":{"statusCode":401},"level":"error","message":"Failed to delete my urls","timestamp":"2025-01-13T05:41:18.472Z"}

@@ -25,6 +25,7 @@ export function ValidateJwt(userRepository: IUserRepository) {
                     token,
                     process.env.JWT_SECRET || 'dGhpc2lzYXNlY3JldGtleWZvcmp3dHRva2Vu'
                 ) as { id: number, email: string };
+
             } catch (jwtError) {
                 res.status(401).json({
                     valid: false,

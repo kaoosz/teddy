@@ -17,8 +17,8 @@ export const authenticateOptional = (required: boolean = false) => {
         const token = authHeader.split(" ")[1];
 
         try {
-            console.log(process.env.AUTH_URL);
-            const validation = await fetch(`${process.env.AUTH_URL}`, {
+
+            const validation = await fetch(`${process.env.AUTH_SERVICE_URL}/users/validate-token`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
