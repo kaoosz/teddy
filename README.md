@@ -5,9 +5,21 @@ git clone https://github.com/kaoosz/teddy.git
 ```
 🔧 Configuração do Ambiente
 
-Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
+os projetos rodam nas portas 3000,3001,4000  e os bancos 5432,5433:
 ```
 cd teddy
+cd docs
+npm install
+cd ..
+vai no users-service cria .env na raiz do users-service e copia o codigo do .env.example
+npm install
+cd ..
+vai no url-service cria .env na raiz do url-service e copia o codigo do .env.example
+npm install
+cd ..
+depois de installar todas dependencias das pastas docs,users-service,url-service
+agora é rodar o docker
+
 ```
 🚀 Rodar a Aplicação
 Via Docker Compose
