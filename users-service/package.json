@@ -2,7 +2,7 @@
   "name": "users-service",
   "version": "1.0.0",
   "scripts": {
-    "start": "ts-node src/server.ts",
+    "start": "npx prisma db push && ts-node src/server.ts",
     "dev": "nodemon src/server.ts"
   },
   "keywords": [],
@@ -12,14 +12,17 @@
   "dependencies": {
     "@prisma/client": "^6.2.1",
     "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
     "express": "^4.21.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
+    "winston": "^3.17.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/jsonwebtoken": "^9.0.7",

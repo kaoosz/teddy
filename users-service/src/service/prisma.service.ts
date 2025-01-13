@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 
-
 export class PrismaDatabase {
     private static instance: PrismaDatabase;
     private prisma: PrismaClient;

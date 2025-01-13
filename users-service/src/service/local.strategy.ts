@@ -1,4 +1,3 @@
-// service/local.strategy.ts
 import { Strategy as LocalStrategy } from 'passport-local';
 import { PassportStatic } from 'passport';
 import { UserRepository } from '../respository/user.repository';
@@ -23,7 +22,6 @@ export const configureLocalStrategy = (
                         return done(null, false, { message: 'User not found' });
                     }
 
-                    // For now direct comparison, add bcrypt later
                     if (user.password !== password) {
                         return done(null, false, { message: 'Invalid password' });
                     }

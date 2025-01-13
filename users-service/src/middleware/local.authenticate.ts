@@ -21,7 +21,7 @@ export const localAuthentication = (
 
             const token = jwt.sign(
                 { id: user.id, email: user.email },
-                process.env.JWT_SECRET || 'secret'
+                process.env.JWT_SECRET || 'dGhpc2lzYXNlY3JldGtleWZvcmp3dHRva2Vu'
             );
 
             return res.json({ token });
